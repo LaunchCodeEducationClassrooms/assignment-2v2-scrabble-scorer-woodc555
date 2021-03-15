@@ -70,19 +70,12 @@ let scrabbleScore = function(word){
   return score;
 };
 
-const scoringAlgorithms = [
-  {name: "Simple Score",
-  description: "Each letter is worth 1 point",
-  scorerFunction: simpleScore
-  },
-  {name: "Bonue Vowels", 
-  description:"Vowels are 3 pts, consonants are 1 pt.",
-  scorerFunction: vowelBonusScore
-  },
-  {name: "Scrabble",
-  description: "The traditional scoring algorithm.",
-  scorerFunction: oldScrabbleScorer
-  }
+const scoringAlgorithms = [ 
+  Object({ name: 'Simple Score', description: 'Each letter is worth 1 point', scorerFunction: Function }),
+
+  Object({ name: 'Bonue Vowels', description: 'Vowels are 3 pts, consonants are 1 pt.', scorerFunction: Function }),
+
+  Object({ name: 'Scrabble', description: 'The traditional scoring algorithm.', scorerFunction: Function }) 
   ];
 
 function scorerPrompt() {
