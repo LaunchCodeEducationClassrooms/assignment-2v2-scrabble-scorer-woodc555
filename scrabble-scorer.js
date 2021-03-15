@@ -33,26 +33,88 @@ function oldScrabbleScorer(word) {
 // don't change the names or your program won't work as expected. //
 
 function initialPrompt() {
-   console.log("Let's play some scrabble! Enter a word:");
+   word = input.question("Let's play some scrabble! Enter a word:");
 };
 
-let simpleScore;
+let simpleScore = function(word){
+  word = word.toUpperCase();
+  score = 0;
+  for (let i = 0; i < word.length; i++){
+    score++;
+  }
+  return console.log(`The score for ${word} is: ${score}`);
+   
+};
 
-let vowelBonusScore;
+let vowelBonusScore = function(word){
+  word = word.toUpperCase();
+  vowelScore = 0;
+  vowels = ["A", "E", "I", "O", "U"];
+  for (let i = 0; i < word.length; i++){
+    if(vowels.includes(word[i])){
+      vowelScore = vowelScore + 3;
+    } else{
+      vowelScore++;
+    }
+  }
+  return console.log(`The score for ${word} is: ${vowelScore}`);
+  
+};
 
-let scrabbleScore;
+let scrabbleScore = function(word){
+  word = word.toUpperCase();
+  let score = 0;
+  for (i = 0; i < word.length; i++){
+    score += newPointStructure[word[i]];
+  };
+  return score;
+};
 
-const scoringAlgorithms = [];
+const scoringAlgorithms = [
+  {name: "Simple Score",
+  description: "Each letter is worth 1 point",
+  scorerFunction: simpleScore
+  },
+  {name: "Bonue Vowels", 
+  description:"Vowels are 3 pts, consonants are 1 pt.",
+  scorerFunction: vowelBonusScore
+  },
+  {name: "Scrabble",
+  description: "The traditional scoring algorithm.",
+  scorerFunction: oldScrabbleScorer
+  }
+  ];
 
-function scorerPrompt() {}
+function scorerPrompt() {
+  scoreChoice = input.question("Which scoring Algorithm would you like to use?\n0 - Simple: One point per character\n1 - Vowel Bonus: Vowels are worth 3 points\n2 - Scrabble: Uses scrabble point system");
+  if (scoreChoice == 0){
+    console.log(simpleScore(word));
+  } else if (scoreChoice == 1){
+    console.log(vowelBonusScore(word));
+  } else if (scoreChoice == 2){
+    console.log(oldScrabbleScorer(word));
+  } else{
+    scoreChoice = input.question("Please choose a number 0 - 2: ")
+  }
+}
 
-function transform() {};
+function transform(pointStructure) {
+  let newPointStruct = {};
+  for (key in pointStructure) {
+    for (let i = 0; i < pointStructure[key].length; i++){
+      let letterItem = pointStructure[key][i];
+      letterItem = letterItem.toUpperCase();
+    };
+  };
+  return newPointStruct;
+};
 
-let newPointStructure;
+let newPointStructure = transform(oldPointStructure);
+newPointStructure[" "] = 0;
 
 function runProgram() {
    initialPrompt();
-   
+   scorerPrompt();
 }
 
 // Don't write any code below this line //
