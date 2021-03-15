@@ -13,7 +13,7 @@ const oldPointStructure = {
 };
 
 function oldScrabbleScorer(word) {
-	word = word.toUpperCase();
+	word = word.toLowerCase();
 	let letterPoints = "";
  
 	for (let i = 0; i < word.length; i++) {
@@ -37,7 +37,7 @@ function initialPrompt() {
 };
 
 let simpleScore = function(word){
-  word = word.toUpperCase();
+  word = word.toLowerCase();
   score = 0;
   for (let i = 0; i < word.length; i++){
     score++;
@@ -47,7 +47,7 @@ let simpleScore = function(word){
 };
 
 let vowelBonusScore = function(word){
-  word = word.toUpperCase();
+  word = word.toLowerCase();
   vowelScore = 0;
   vowels = ["A", "E", "I", "O", "U"];
   for (let i = 0; i < word.length; i++){
@@ -62,11 +62,12 @@ let vowelBonusScore = function(word){
 };
 
 let scrabbleScore = function(word){
-  word = word.toUpperCase();
+  word = word.toLowerCase();
   let score = 0;
   for (i = 0; i < word.length; i++){
     score += newPointStructure[word[i]];
   };
+  console.log(`The score for ${word} is: ${score}`);
   return score;
 };
 
@@ -84,7 +85,7 @@ function scorerPrompt() {
   } else if (scoreChoice == 1){
     console.log(vowelBonusScore(word));
   } else if (scoreChoice == 2){
-    console.log(oldScrabbleScorer(word));
+    console.log(scrabbleScore(word));
   } else{
     scoreChoice = input.question("Please choose a number 0 - 2: ")
   }
@@ -95,7 +96,7 @@ function transform(pointStructure) {
   for (key in pointStructure) {
     for (let i = 0; i < pointStructure[key].length; i++){
       let letterItem = pointStructure[key][i];
-      letterItem = letterItem.toUpperCase();
+      letterItem = letterItem.toLowerCase();
     };
   };
   return newPointStruct;
