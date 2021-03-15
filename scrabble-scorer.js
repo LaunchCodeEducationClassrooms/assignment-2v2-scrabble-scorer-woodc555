@@ -42,8 +42,8 @@ let simpleScore = function(word){
   for (let i = 0; i < word.length; i++){
     score++;
   }
-  return console.log(`The score for ${word} is: ${score}`);
-   
+  console.log(`The score for ${word} is: ${score}`);
+  return score;
 };
 
 let vowelBonusScore = function(word){
@@ -57,8 +57,8 @@ let vowelBonusScore = function(word){
       vowelScore++;
     }
   }
-  return console.log(`The score for ${word} is: ${vowelScore}`);
-  
+  console.log(`The score for ${word} is: ${vowelScore}`);
+  return vowelScore;
 };
 
 let scrabbleScore = function(word){
