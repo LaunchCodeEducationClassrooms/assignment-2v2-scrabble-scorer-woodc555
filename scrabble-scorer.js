@@ -51,7 +51,7 @@ let vowelBonusScore = function(word){
   vowelScore = 0;
   vowels = ["A", "E", "I", "O", "U"];
   for (let i = 0; i < word.length; i++){
-    if(vowels.includes(word[i])){
+    if(word.includes(vowels[i])){
       vowelScore = vowelScore + 3;
     } else{
       vowelScore++;
