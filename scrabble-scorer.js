@@ -50,10 +50,12 @@ let vowelBonusScore = function(word){
   word = word.toLowerCase();
   vowelScore = 0;
   vowels = ["a", "e", "i", "o", "u"];
+  wordArray = word.split();
   for (let i = 0; i < word.length; i++){
-    if(word.includes(vowels[i])){
+    let j = 0;
+    if(vowels.includes(word[i])) {
       vowelScore = vowelScore + 3;
-    } else{
+    } else {
       vowelScore++;
     }
   }
