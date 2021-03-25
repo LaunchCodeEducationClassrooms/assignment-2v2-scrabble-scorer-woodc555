@@ -99,6 +99,7 @@ function transform(pointStructure) {
     for (let i = 0; i < pointStructure[key].length; i++){
       let letterItem = pointStructure[key][i];
       letterItem = letterItem.toLowerCase();
+      newPointStruct[`${letterItem}`] = Number(key);
     };
   };
   return newPointStruct;
